@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/basic :: head"></head>
+<body>
+<header th:replace="fragments/basic :: header"></header>
+
+<div class="container">
+    <a class="btn btn-success" th:href="@{/registrar}">Registrar Vehiculo</a>
+    <div class="mt-2" th:if="${ vehiculos != null and !vehiculos.isEmpty() }">
+        <table class="table table-border table-striped table-hover">
+            <thead class="table-dark">
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Color</th>
+            <th>Cilindros</th>
+            <th>Tipo Vehiculo</th>
+            <th>Tipo Conbustible</th>
+            <th>Acciones</th>
+            </thead>
+            <tbody>
+            <tr th:each="candidate : ${vehiculos}">
+                <td th:text="${candidate.id}"></td>
+                <td th:text="${candidate.marca}"></td>
+                <td th:text="${candidate.modelo}"></td>
+                <td th:text="${candidate.anho}"></td>
+                <td th:text="${candidate.color}"></td>
+                <td th:text="${candidate.cilindros}"></td>
+                <td th:text="${candidate.getTipoVehiculo()}"></td>
+                <td th:text="${candidate.getTipoCombustible()}"></td>
+                <td class="text-center">
+                    <a class="btn btn-warning" th:href="@{/editar/} + ${candidate.id}" th:text="Editar"></a>
+                    <a class="btn btn-danger" th:href="@{/eliminar/} + ${candidate.id}" th:text="Eliminar"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-2" th:if="${ vehiculos == null or vehiculos.isEmpty() }">
+        <h3 class="text-center text-muted">¡La lista está vacía!</h3>
+    </div>
+</div>
+<footer th:replace="fragments/basic :: footer"></footer>
+</body>
+</html>
