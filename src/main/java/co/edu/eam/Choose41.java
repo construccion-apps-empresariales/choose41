@@ -48,10 +48,12 @@ public class Choose41 {
 		appAdmin.setRol(rolDao.findById(1).get());
 		appUserDao.save(appAdmin);
 
-		Candidate candidate = new Candidate();
-		candidate.setTitle("Test Candidate");
-		candidate.setDescription("Description for only having some kind of text");
-		candidate.setImage();
-		candidateDao.save(candidate);
+		for (int i = 0; i < 10; i++) {
+			Candidate candidate = new Candidate();
+			candidate.setTitle("Test Candidate " + i);
+			candidate.setDescription("Description for only having some kind of text " + i);
+			candidate.setImage();
+			candidateDao.save(candidate);
+		}
 	}
 }

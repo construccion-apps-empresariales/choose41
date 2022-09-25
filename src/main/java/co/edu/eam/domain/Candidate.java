@@ -73,7 +73,6 @@ public class Candidate implements Serializable {
         String imageString = Base64.getEncoder().withoutPadding().encodeToString(data);
         out.close();
         stream.close();
-        log.info("Encode Image Result : " + imageString);
         return imageString;
     }
 }
