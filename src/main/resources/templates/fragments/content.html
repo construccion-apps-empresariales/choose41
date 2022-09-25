@@ -4,7 +4,10 @@
 <body>
 
 <div th:fragment="admin" class="container-fluid px-5 d-flex flex-column justify-content-center" style="height: 90vh;">
-    <div class="d-flex m-0" style="height: 38vh; overflow-x: scroll; overflow-y: auto;">
+    <div class="m-0" style="height: 50vh; overflow: scroll;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat( auto-fit, minmax(16rem, 1fr) );">
         <div class="px-3 d-flex flex-column justify-content-center" th:each="candidate: ${candidates}" style="width: 20%rem; min-width: 16rem;">
             <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
         </div>
