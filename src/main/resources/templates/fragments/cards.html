@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/basic :: head"></head>
+<body>
+
+<div class="card shadow text-center" th:fragment="card(title, description, image, votesUp, votesDown)" style="width: 100%; height: 90%">
+  <div class="card-header d-flex justify-content-around">
+    <button th:text="${votesUp}">^</button>
+    <span class="fw-bold" th:text="${title}"></span>
+    <button th:text="${votesDown}">v</button>
+  </div>
+  <div class="d-flex justify-content-center p-2">
+    <img th:src="'data:image/png;base64,' + ${image}" class="card-img-top" alt="cadidate image" style="width: 8rem; height: 8rem;">
+  </div>
+  <div class="card-body p-2" style="overflow-y: hidden;">
+    <p class="card-text" th:text="${description}"></p>
+  </div>
+</div>
+</body>
+</html>

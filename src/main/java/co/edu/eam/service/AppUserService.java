@@ -8,7 +8,6 @@ import java.util.List;
 public interface AppUserService {
     public List<AppUser> list();
     public AppUser findById(AppUser appUser);
-
     public void save(AppUser appUser);
     public void delete(AppUser appUser);
 }

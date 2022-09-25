@@ -1,8 +1,10 @@
 package co.edu.eam;
 
 import co.edu.eam.dao.AppUserDao;
+import co.edu.eam.dao.CandidateDao;
 import co.edu.eam.dao.RolDao;
 import co.edu.eam.domain.AppUser;
+import co.edu.eam.domain.Candidate;
 import co.edu.eam.domain.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +20,9 @@ public class Choose41 {
 
 	@Autowired
 	private RolDao rolDao;
+
+	@Autowired
+	private CandidateDao candidateDao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Choose41.class, args);
@@ -42,5 +47,11 @@ public class Choose41 {
 		appAdmin.setPassword("admin123");
 		appAdmin.setRol(rolDao.findById(1).get());
 		appUserDao.save(appAdmin);
+
+		Candidate candidate = new Candidate();
+		candidate.setTitle("Test Candidate");
+		candidate.setDescription("Description for only having some kind of text");
+		candidate.setImage();
+		candidateDao.save(candidate);
 	}
 }

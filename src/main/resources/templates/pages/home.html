@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/basic :: head"></head>
+<body>
+<header th:replace="fragments/basic :: header"></header>
+
+<div class="container-fluid px-5 d-flex flex-column justify-content-center" style="height: 90vh;">
+    <div class="d-flex m-0" style="height: 38vh; overflow-x: scroll; overflow-y: auto;">
+        <div class="px-3 d-flex flex-column justify-content-center" th:each="candidate: ${candidates}" style="width: 20%rem; min-width: 16rem;">
+            <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
+        </div>
+    </div>
+    <div class="row justify-content-evenly">
+        <div th:replace="fragments/tables :: users"></div>
+        <div th:replace="fragments/tables :: candidates"></div>
+    </div>
+    <div th:replace="fragments/modals :: addUserModal"></div>
+    <div th:replace="fragments/modals :: addCandidateModal"></div>
+</div>
+<footer th:replace="fragments/basic :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/basic :: head"></head>
+<body>
+
+<div class="col-sm-12 col-md-12 col-lg-6 py-3 my-3 shadow" th:fragment="users" style="max-width: 45%">
+  <div class="row justify-content-around">
+    <button class="btn btn-success col-4" data-bs-toggle="modal" data-bs-target="#addUserModal">Agregar</button>
+    <span class="col-6 text-end text-muted h2">Usuarios</span>
+  </div>
+  <div class="mt-2" th:if="${ users != null and !users.isEmpty() }" style="max-height: 30vh; overflow-y: scroll;">
+    <table class="table table-border table-striped table-hover">
+      <thead class="table-dark">
+      <th>ID</th>
+      <th>username</th>
+      <th class="text-center">Acciones</th>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td class="text-center">
+          <a class="btn btn-warning" th:text="Editar"></a>
+          <a class="btn btn-danger" th:text="Eliminar"></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="my-5" th:if="${ users == null or users.isEmpty() }">
+    <h3 class="text-center text-muted">¡La lista está vacía!</h3>
+  </div>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-6 py-3 my-3 shadow" th:fragment="candidates" style="max-width: 45%">
+  <div class="row justify-content-around">
+    <button class="btn btn-success col-4" data-bs-toggle="modal" data-bs-target="#addCandidateModal">Agregar</button>
+    <span class="col-6 text-end text-muted h2">Candidatos</span>
+  </div>
+  <div class="mt-2" th:if="${ candidates != null and !candidates.isEmpty() }" style="max-height: 30vh; overflow-y: scroll;">
+    <table class="table table-border table-striped table-hover">
+      <thead class="table-dark">
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Ups</th>
+      <th>Downs</th>
+      <th class="text-center">Acciones</th>
+      </thead>
+      <tbody>
+      <tr th:each="candidate : ${candidates}">
+        <td th:text="${candidate.id}"></td>
+        <td th:text="${candidate.title}"></td>
+        <td th:text="${candidate.votesUp}"></td>
+        <td th:text="${candidate.votesDown}"></td>
+        <td class="text-center">
+          <a class="btn btn-warning" th:text="Editar"></a>
+          <a class="btn btn-danger" th:text="Eliminar"></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="my-5" th:if="${ candidates == null or candidates.isEmpty() }">
+    <h3 class="text-center text-muted ">¡La lista está vacía!</h3>
+  </div>
+</div>
+</body>
+</html>

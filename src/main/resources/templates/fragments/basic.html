@@ -5,23 +5,21 @@
     <title>Coose41</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header th:fragment="header" class="text-center py-2 my-2">
-        <nav class="navbar navbar-expand-lg bg-light">
+    <header th:fragment="header" class="text-center mb-3">
+        <nav class="navbar navbar-expand-md bg-info py-2">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Choose41</a>
+                <a class="navbar-brand fw-bolder" href="#">Choose41</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <ul sec:authorize="isAuthenticated()" class="navbar-nav">
-                        <li class="nav-item">
-                            <span sec:authentication="name">Username</span>
-                        </li>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <ul sec:authorize="isAuthenticated()" class="navbar-nav gx-5">
                         <li class="nav-item">
                             <form th:action="@{/logout}" method="post">
-                                <a href="#" onclick="this.parentNode.submit();">
+                                <a class="nav-link fw-bold" href="#" onclick="this.parentNode.submit();">
                                     Salir
                                 </a>
                             </form>

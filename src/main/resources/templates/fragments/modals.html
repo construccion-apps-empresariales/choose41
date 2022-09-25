@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/basic :: head"></head>
+<body>
+<!-- Modal -->
+<div th:fragment="addUserModal" class="modal fade" id="addUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Agregar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/users/save}" method="POST" th:object="${appUser}" class="mx-auto px-3">
+                    <div class="mb-3 row">
+                        <label for="username" class="col-12 col-form-label">Nombre Usuario</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario" th:field="*{username}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error en el nombre de usuario</span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="password" class="col-12 col-form-label">Contraseña</label>
+                        <div class="col-12">
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Asigne su contraseña" th:field="*{password}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error en la contraseña</span>
+                        </div>
+                    </div>
+                    <div class="d-block text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-success" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="addCandidateModal" class="modal fade" id="addCandidateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Agregar Candidato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/candidates/save}" method="POST" th:object="${candidate}" class="mx-auto px-3">
+                    <div class="mb-3 row">
+                        <label for="username" class="col-12 col-form-label">Nombre Candidato</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" id="title" name="title" placeholder="Ingrese el nombre del candidato" th:field="*{title}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error en el nombre del candidato</span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="description" class="col-12 col-form-label">Descripcion</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" id="description" name="descricption" placeholder="Ingrese una descripcion para el candidato" th:field="*{description}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error en la descripcion del candidato</span>
+                        </div>
+                    </div>
+                    <div class="d-block text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-success" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

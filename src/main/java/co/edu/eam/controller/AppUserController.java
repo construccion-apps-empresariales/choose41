@@ -44,6 +44,6 @@ public class AppUserController {
             return "users/save";
         }
         appUserService.save(appUser);
-        return "redirect:/";
+        return "redirect:/home";
     }
 }
