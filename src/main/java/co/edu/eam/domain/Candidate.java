@@ -51,6 +51,16 @@ public class Candidate implements Serializable {
         }
     }
 
+    public void setRandomImmg(String imagePath){
+        log.info("Setting img {}", imagePath);
+        try {
+            this.image = proccessImage(imagePath);
+            this.imageType = "image/svg+xml";
+        } catch (IOException ioe){
+            log.error(ioe.getMessage());
+        }
+    }
+
     private String proccessImage(String imgPath) throws IOException {
         // read image from file
         FileInputStream stream = new FileInputStream(imgPath);

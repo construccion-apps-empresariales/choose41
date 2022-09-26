@@ -32,7 +32,7 @@ public class Choose41 {
 	public void loadData(){
 		createRoles();
 		createUsers(0);
-		createCandidates(0);
+		createCandidates(10);
 	}
 
 	private void createRoles(){
@@ -82,8 +82,12 @@ public class Choose41 {
 			}
 			candidate.setTitle("generated candidate " + i);
 			candidate.setDescription("Description for only having some kind of text, nothing special " + i);
-			candidate.setImage();
+			candidate.setRandomImmg("src/main/resources/static/img/users-" + getRandomNumber(1, 17) + ".svg");
 			candidateService.save(candidate);
 		}
+	}
+
+	private int getRandomNumber(int min, int max) {
+		return (int) ((Math.random() * (max - min)) + min);
 	}
 }
