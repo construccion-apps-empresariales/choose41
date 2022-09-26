@@ -74,6 +74,46 @@
         </div>
     </div>
 </div>
+<div th:fragment="editCandidateModal" class="modal fade" id="editCandidateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar Candidato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/candidates/edit/__${id}__}" method="POST" th:object="${candidate}" class="mx-auto px-3" enctype="multipart/form-data">
+                    <input id="candidateId" name="id" hidden></input>
+                    <div class="mb-3 row">
+                        <label for="username" class="col-12 col-form-label">Nombre Candidato</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" id="titleEdit" name="title" placeholder="Ingrese el nombre del candidato" th:field="*{title}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error en el nombre del candidato</span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="description" class="col-12 col-form-label">Descripcion</label>
+                        <div class="col-12">
+                            <input class="form-control" type="text" id="descriptionEdit" name="descricption" placeholder="Ingrese una descripcion para el candidato" th:field="*{description}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error en la descripcion del candidato</span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="avatar" class="col-12 col-form-label">Foto <span class="text-muted fs-sm">(Dejar asi si no se va a editar)</span></label>
+                        <div class="col-12">
+                            <input class="form-control" type="file" id="imageEdit" name="image" placeholder="Seleccione una foto de perfil" th:field="*{image}" accept="image/*">
+                            <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{description}">Error al procesar la imagen o es una imagen invalida</span>
+                        </div>
+                    </div>
+                    <div class="d-block text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-warning" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

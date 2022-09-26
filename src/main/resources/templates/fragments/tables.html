@@ -19,7 +19,7 @@
       <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
-        <td class="text-center">
+        <td class="d-flex justify-content-evenly text-center">
           <a class="btn btn-warning" th:text="Editar"></a>
           <a class="btn btn-danger" th:text="Eliminar"></a>
         </td>
@@ -41,8 +41,9 @@
       <thead class="table-dark">
       <th>ID</th>
       <th>Nombre</th>
-      <th>Ups</th>
-      <th>Downs</th>
+      <th>U</th>
+      <th>D</th>
+      <th>T</th>
       <th class="text-center">Acciones</th>
       </thead>
       <tbody>
@@ -51,9 +52,12 @@
         <td th:text="${candidate.title}"></td>
         <td th:text="${candidate.votesUp}"></td>
         <td th:text="${candidate.votesDown}"></td>
-        <td class="text-center">
-          <a class="btn btn-warning" th:text="Editar"></a>
-          <a class="btn btn-danger" th:text="Eliminar"></a>
+        <td th:text="${candidate.votesUp - candidate.votesDown}"></td>
+        <td class="d-flex justify-content-evenly text-center">
+          <a class="btn btn-warning" th:href="@{candidates/get/__${candidate.id}__}" id="editCandidateBtn" th:text="Editar"></a>
+          <form class="m-0 p-0" th:action="@{/candidates/delete/__${candidate.id}__}" method="POST">
+            <button class="btn btn-danger" th:text="Eliminar"></button>
+          </form>
         </td>
       </tr>
       </tbody>

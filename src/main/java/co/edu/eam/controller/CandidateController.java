@@ -1,16 +1,15 @@
 package co.edu.eam.controller;
 
+import co.edu.eam.domain.AppUser;
 import co.edu.eam.domain.Candidate;
+import co.edu.eam.service.AppUserService;
 import co.edu.eam.service.CandidateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -23,6 +22,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/candidates")
 public class CandidateController {
+
+    @Autowired
+    AppUserService appUserService;
 
     @Autowired
     CandidateService candidateService;
@@ -57,4 +59,34 @@ public class CandidateController {
         return "redirect:/home";
     }
 
+    @PostMapping("/edit")
+    public String edit(@RequestParam("id") Long id,
+                       @RequestParam("title") String title,
+                       @RequestParam("description") String description){
+        Candidate candidate = candidateService.findById(id);
+        candidate.setId(id);
+        candidate.setTitle(title);
+        candidate.setDescription(description);
+        candidateService.save(candidate);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id){
+        Candidate candidate = candidateService.findById(id);
+        List<AppUser> users = candidateService.getVoters(candidate);
+        for (AppUser user : users) {
+            user.setCandidate(null);
+            appUserService.save(user);
+        }
+        candidateService.delete(candidate);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/get/{id}")
+    public String getCandidate(Model model, @PathVariable("id") Long id){
+        Candidate candidate = candidateService.findById(id);
+        model.addAttribute("candidate", candidate);
+        return "/pages/edit-candidate";
+    }
 }

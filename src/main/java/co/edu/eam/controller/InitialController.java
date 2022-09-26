@@ -5,7 +5,8 @@ import co.edu.eam.domain.AppUser;
 import co.edu.eam.domain.Candidate;
 import co.edu.eam.service.AppUserService;
 import co.edu.eam.service.CandidateService;
-import co.edu.eam.utils.ImageUtil;
+import co.edu.eam.utils.Auth;
+import co.edu.eam.utils.AuthDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,7 +23,10 @@ import java.util.List;
 public class InitialController {
 
     @Autowired
-    AppUserDao appUserDao;
+    private AuthDao authDao;
+
+    @Autowired
+    private AppUserDao appUserDao;
 
     @Autowired
     private AppUserService appUserService;
@@ -45,7 +49,6 @@ public class InitialController {
         model.addAttribute("candidate", candidate);
         model.addAttribute("candidates", candidates);
         model.addAttribute("users", users);
-        model.addAttribute("imageUtil", new ImageUtil());
         return "pages/home";
     }
 
@@ -57,9 +60,9 @@ public class InitialController {
     }
 
     @ModelAttribute("currentUser")
-    public AppUser setUserLoggedGlobally(Model model) {
+    public AppUser setUserLoggedGlobally() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         AppUser appUser = appUserDao.findByUsername(authentication.getName());
-        return appUser;
+        return authDao.getAuthenticatedUser();
     }
 }
