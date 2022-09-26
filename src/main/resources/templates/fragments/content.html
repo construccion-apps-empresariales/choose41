@@ -11,7 +11,7 @@
         grid-gap: 10px;
         grid-template-columns: repeat( auto-fit, minmax(16rem, 1fr) );">
         <div class="px-3 d-flex flex-column justify-content-center" th:each="candidate: ${candidates}" style="width: 20%rem; min-width: 16rem;">
-            <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
+            <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.imageType}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
         </div>
     </div>
     <hr>
@@ -31,7 +31,7 @@
         grid-gap: 10px;
         grid-template-columns: repeat( auto-fit, minmax(16rem, 1fr) );">
             <div class="px-3 d-flex flex-column justify-content-center" th:each="candidate: ${candidates}" style="width: 19%rem; min-width: 16rem; max-width: 21%">
-                <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
+                <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.imageType}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
         grid-gap: 10px;
         grid-template-columns: repeat( auto-fit, minmax(16rem, 1fr) );">
             <div class="px-3 d-flex flex-column justify-content-center" th:each="candidate: ${currentUser.getCandidate()}" style="width: 19%rem; min-width: 16rem; max-width: 21%">
-                <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.votesUp}, ${candidate.votesDown})"></div>
+                <div th:replace="fragments/cards :: card(${candidate.title}, ${candidate.description}, ${candidate.image}, ${candidate.imageType},  ${candidate.votesUp}, ${candidate.votesDown})"></div>
             </div>
         </div>
     </div>

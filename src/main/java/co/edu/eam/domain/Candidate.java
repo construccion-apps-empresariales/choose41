@@ -41,17 +41,11 @@ public class Candidate implements Serializable {
     @Lob
     private String image;
 
+    private String imageType = "image/png";
+
     public void setImage(){
         try {
             this.image = proccessImage("src/main/resources/static/img/avatar.png");
-        } catch (IOException ioe){
-            log.error(ioe.getMessage());
-        }
-    }
-
-    public void setImage(String imagePath){
-        try {
-            this.image = proccessImage(imagePath);
         } catch (IOException ioe){
             log.error(ioe.getMessage());
         }

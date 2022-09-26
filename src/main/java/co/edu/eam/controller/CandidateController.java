@@ -10,10 +10,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -31,12 +35,23 @@ public class CandidateController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid Candidate candidate, Errors errors){
-        if (errors.hasErrors()) {
-            return "candidates/save";
-        }
-        if (candidate.getImage() == null){
+    public String save(@RequestParam("image") MultipartFile image,
+                       @RequestParam("id") Optional<Long> id,
+                       @RequestParam("title") String title,
+                       @RequestParam("description") String description){
+        Candidate candidate = new Candidate();
+        candidate.setTitle(title);
+        candidate.setDescription(description);
+        try {
+            if (image.isEmpty()) {
+                candidate.setImage();
+            } else {
+                candidate.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+                candidate.setImageType(image.getContentType());
+            }
+        } catch (IOException e) {
             candidate.setImage();
+            log.error(e.getMessage());
         }
         candidateService.save(candidate);
         return "redirect:/home";

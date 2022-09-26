@@ -5,6 +5,7 @@ import co.edu.eam.domain.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -37,4 +38,5 @@ public class CandidateServiceImplementation implements CandidateService {
     public void delete(Candidate candidate) {
         candidateDao.delete(candidate);
     }
+
 }

@@ -43,7 +43,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/candidates/save}" method="POST" th:object="${candidate}" class="mx-auto px-3">
+                <form th:action="@{/candidates/save}" method="POST" th:object="${candidate}" class="mx-auto px-3" enctype="multipart/form-data">
                     <div class="mb-3 row">
                         <label for="username" class="col-12 col-form-label">Nombre Candidato</label>
                         <div class="col-12">
@@ -56,6 +56,13 @@
                         <div class="col-12">
                             <input class="form-control" type="text" id="description" name="descricption" placeholder="Ingrese una descripcion para el candidato" th:field="*{description}" required>
                             <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error en la descripcion del candidato</span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="avatar" class="col-12 col-form-label">Foto</label>
+                        <div class="col-12">
+                            <input class="form-control" type="file" id="image" name="image" placeholder="Seleccione una foto de perfil" th:field="*{image}" accept="image/*">
+                            <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{description}">Error al procesar la imagen o es una imagen invalida</span>
                         </div>
                     </div>
                     <div class="d-block text-center">

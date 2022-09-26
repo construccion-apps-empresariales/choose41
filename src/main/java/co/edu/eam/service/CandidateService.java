@@ -1,6 +1,7 @@
 package co.edu.eam.service;
 
 import co.edu.eam.domain.Candidate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
